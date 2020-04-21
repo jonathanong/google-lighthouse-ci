@@ -1,0 +1,12 @@
+{
+  "name": "@jongleberry/google-lighthouse-ci",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Run Google Lighthouse CI once a day to collect performance metrics.",
+  "author": "Jonathan Ong <me@jongleberry.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/jonathanong/google-lighthouse-ci#readme",
+  "dependencies": {
+    "@lhci/cli": "^0.3.12"
+  }
+}

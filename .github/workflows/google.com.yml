@@ -1,0 +1,31 @@
+name: google.com
+
+on:
+  push:
+  schedule:
+    - cron: "30 7 * * *"
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        node-version: [12]
+        url:
+          - https://www.google.com
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npx lhci collect --url="${{ matrix.url }}"
+    - name: Upload results
+      uses: actions/upload-artifact@v1
+      with:
+        name: lighthouse-results
+        path: .lighthouseci
